@@ -23,9 +23,11 @@ namespace App.Core.Data
             using (var context = new MailsContext())
             {
                 var query = from m in context.Mails
-                            where (m.Asunto.Contains(textToSearch) &&
-                                   ((m.Destinatario == destinatario && m.Remitente == remitente) ||
-                                    (m.Destinatario == remitente && m.Remitente == destinatario)))
+                            where (m.Asunto.Contains(textToSearch) ||
+                                   m.Destinatario.Contains(textToSearch) ||
+                                   m.Remitente.Contains(textToSearch) ||
+                                   m.Contenido.Contains(textToSearch)) && ((m.Destinatario == destinatario && m.Remitente == remitente) ||
+                                  (m.Destinatario == remitente && m.Remitente == destinatario))
                             select m;
 
                 return query.Skip(skipRows)
