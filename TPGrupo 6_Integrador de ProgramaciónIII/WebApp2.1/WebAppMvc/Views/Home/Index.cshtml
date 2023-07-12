@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Access";
+}
+
+
+<div class="row">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            Usuario
+            <input type ="text" name="user"/>
+            Password
+            <input type="password" name="password"/>
+        <input type="submit" class="btn btn-success" value="Entrar"/>
+    </div>
+    </form>
+</div>
+
+@{
+    var a = 1;
+
+}
+@section Scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            $("#frm").submit(function (e) {
+                e.preventDefault();
+
+                var url = "@Url.Content("~/Mail/Enter")";
+                var parametros = $(this).serialize();
+
+                $.post(url, parametros, function (data) {
+                    if (data=="1"){
+                    window.location.href = "@Url.Content("~/Mail")";
+                    }else{
+                        alert(data)
+                    }
+                });
+            });
+        });
+    </script>
+
+}

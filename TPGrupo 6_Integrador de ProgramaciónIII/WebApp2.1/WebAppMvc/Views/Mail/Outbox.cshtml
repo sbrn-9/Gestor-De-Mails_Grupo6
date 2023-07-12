@@ -1,0 +1,35 @@
+﻿@model List<App.Core.Entities.Mail>
+
+<h2>Bandeja de salida</h2>
+<script>
+    function openOutbox() {
+        window.open('@Url.Action("Outbox", "Mail")', '_blank');
+    }
+</script>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Remitente</th>
+            <th>Destinatario</th>
+            <th>Asunto</th>
+            <th>Contenido</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mensaje in Model)
+        {
+            <tr>
+                <td>@mensaje.Remitente</td>
+                <td>@mensaje.Destinatario</td>
+                <td>@mensaje.Asunto</td>
+                <td>@mensaje.Contenido</td>
+                
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
